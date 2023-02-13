@@ -1,0 +1,56 @@
+{
+  "name": "recruit-landing",
+  "type": "module",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "pnpm run astro dev",
+    "build": "pnpm run astro build",
+    "preview": "pnpm run astro preview",
+    "astro": "astro",
+    "partytown": "partytown copylib public/~partytown",
+    "pre-commit-lint": "pnpm lint-staged",
+    "pre-push-lint": "pnpm build",
+    "prepare": "cd .. && husky install recruit-landing.husky"
+  },
+  "dependencies": {
+    "@astrojs/partytown": "^1.0.3",
+    "@astrojs/tailwind": "^3.0.1",
+    "@astrojs/vercel": "^3.1.0",
+    "astro": "^2.0.9",
+    "editorconfig": "^1.0.2",
+    "npmrc": "^1.1.1",
+    "tailwindcss": "^3.0.24"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.4.2",
+    "@commitlint/config-conventional": "^17.4.2",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "eslint": "^8.0.1",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-config-standard-with-typescript": "^34.0.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-n": "^15.0.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "husky": "^8.0.3",
+    "lint-staged": "13.0.2",
+    "prettier": "2.8.4",
+    "stylelint": "^14.16.1",
+    "stylelint-config-prettier": "^9.0.4",
+    "stylelint-config-standard": "^29.0.0",
+    "typescript": "*"
+  },
+  "lint-staged": {
+    "./**/*.{js,json,ts,tsx,astro}": [
+      "pnpm lint:fix",
+      "pnpm prettier -w src/**/*.astro",
+      "npx stylelint src/**/*.css",
+      "eslint src/*.{js,jsx,ts,tsx,astro} --fix-dry-run --no-error-on-unmatched-pattern"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pnpm lint:fix"
+    }
+  }
+}
