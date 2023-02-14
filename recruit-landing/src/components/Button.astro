@@ -1,0 +1,16 @@
+---
+export interface ButtonProps {
+  type?: 'primary' | 'secondary';
+  className?: string;
+  onclick: () => void;
+}
+
+const { className = '', onclick = () => {} } = Astro.props;
+---
+
+<button
+  class={`btn-primary bg-lightPurple hover:bg-mediumBlue text-light font-primary rounded-full ${className}`}
+  {onclick}
+>
+  <slot />
+</button>
