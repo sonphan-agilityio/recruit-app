@@ -1,0 +1,132 @@
+---
+import Container from '../../components/Container.astro';
+import Button from '../../components/Button.astro';
+
+export interface HeaderProps {
+  className?: string;
+}
+
+const { className = '', hasOverlap = false } = Astro.props;
+---
+
+<header class={`header ${className}`}>
+  <nav class="z-10 w-full absolute">
+    <Container>
+      <div
+        class="flex items-center justify-between py-2 gap-6 md:py-4 md:gap-0 relative"
+      >
+        <input
+          aria-hidden="true"
+          type="checkbox"
+          name="toggle_nav"
+          id="toggle_nav"
+          class="hidden peer"
+        />
+        <div class="relative z-20 w-full flex justify-between lg:w-max md:px-0">
+          <a href="#home" aria-label="logo" class="flex space-x-2 items-center">
+            <picture>
+              <source
+                media="(max-width: 479px)"
+                width="28px"
+                height="28px"
+                srcset="images/webp/logo.webp"
+                type="image/webp"
+              />
+              <source
+                media="(max-width: 768px)"
+                width="40px"
+                height="40px"
+                srcset="images/webp/logo.webp"
+                type="image/webp"
+              />
+              <img src="images/logo.png" alt="Recruit Logo" />
+            </picture>
+          </a>
+
+          <div class="relative flex items-center lg:hidden max-h-10">
+            <label
+              role="button"
+              for="toggle_nav"
+              aria-label="humburger"
+              class="hamburger relative p-6 -mr-6"
+            >
+              <div
+                aria-hidden="true"
+                class="line m-auto h-0.5 w-5 rounded bg-lightPurple"
+              >
+              </div>
+              <div
+                aria-hidden="true"
+                class="line-second m-auto mt-2 h-0.5 w-5 rounded bg-lightPurple"
+              >
+              </div>
+            </label>
+          </div>
+        </div>
+        <div
+          class="flex-col z-20 flex-wrap gap-6 p-8 rounded-3xl border justify-end w-full invisible opacity-0 translate-y-1 absolute top-full left-0 transition-all duration-300 scale-95 origin-top lg:relative lg:scale-100 lg:peer-checked:translate-y-0 lg:translate-y-0 lg:flex lg:flex-row lg:items-center lg:gap-0 lg:p-0 lg:bg-transparent lg:visible lg:opacity-100 lg:border-none peer-checked:scale-100 peer-checked:opacity-100 peer-checked:visible lg:shadow-none"
+        >
+          <div class="lg:w-auto w-full lg:pt-0">
+            <ul
+              class="tracking-wide font-medium text-sm flex-col flex lg:flex-row gap-6 lg:gap-0 lg:mr-12 lg:text-base"
+            >
+              <li>
+                <a
+                  href="#About"
+                  class="block md:px-4 transition hover:text-lightPurple"
+                >
+                  About
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#Services"
+                  class="block md:px-4 transition hover:text-lightPurple"
+                >
+                  Services
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#Success Stories"
+                  class="block md:px-4 transition hover:text-lightPurple"
+                >
+                  Success Stories
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#Join Us"
+                  class="block md:px-4 transition hover:text-lightPurple"
+                >
+                  Join Us
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="mt-12 lg:mt-0 lg:ml-12">
+            <a
+              href="#"
+              class="relative flex h-9 w-full items-center justify-center bg-lightPurple rounded-3xl md:bg-light md:border border-lightPurple md:hover:bg-lightPurple"
+            >
+              <span
+                class="relative text-sm font-primary text-light md:text-lightPurple md:py-3.5 md:pl-5 md:pr-12 md:hover:text-light"
+                >Schedule A Call</span
+              >
+            </a>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </nav>
+</header>
+
+<style>
+  #toggle_nav:checked ~ div .hamburger .line {
+    @apply rotate-45 translate-y-1.5;
+  }
+
+  #toggle_nav:checked ~ div .hamburger .line-second {
+    @apply -rotate-45 -translate-y-1;
+  }
+</style>

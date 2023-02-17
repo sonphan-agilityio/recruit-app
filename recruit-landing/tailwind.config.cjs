@@ -83,6 +83,9 @@ module.exports = {
         'btn-secondary': '46px',
         nav: '28px',
         header: '78px'
+      },
+      maxWidth: {
+        container: '1320px'
       }
     }
   },
