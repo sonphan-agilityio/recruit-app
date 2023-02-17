@@ -1,0 +1,29 @@
+---
+export interface ImageProps {
+  className?: string;
+  alt?: string;
+  url: {
+    mobile?: string;
+    desktop?: string;
+  };
+  isLazyLoading?: boolean;
+}
+
+const {
+  alt,
+  url,
+  className,
+  isLazyLoading = false,
+} = Astro.props as ImageProps;
+---
+
+<picture class={`w-auto max-w-full h-fit img-responsive ${className}`}>
+  {url.desktop && <source media="(min-width: 1280px)" srcset={url.desktop} />}
+  <img
+    src={url.mobile}
+    alt={alt}
+    width="100%"
+    height="auto"
+    loading={isLazyLoading ? 'lazy' : 'eager'}
+  />
+</picture>

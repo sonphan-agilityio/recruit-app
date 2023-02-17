@@ -1,0 +1,19 @@
+---
+export interface SocialiconProps {
+  className?: string;
+  imageUrl?: string;
+  imageAlt?: string;
+  href?: string;
+}
+
+const {
+  className = '',
+  imageUrl = '',
+  imageAlt = 'Social',
+  href = '',
+} = Astro.props;
+---
+
+<a class={`flex social-icon ${className}`} href={href}>
+  <img src={imageUrl} alt={imageAlt} width="100%" height="100%" />
+</a>
