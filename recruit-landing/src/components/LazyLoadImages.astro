@@ -1,0 +1,42 @@
+---
+export interface ImageProps {
+  className?: string;
+  imageAlt?: string;
+  imageUrl: {
+    mobile?: string;
+    desktop?: string;
+  };
+  imageWidth: {
+    mobile?: string;
+    desktop?: string;
+  };
+  imageHeight: {
+    mobile?: string;
+    desktop?: string;
+  };
+}
+
+const { imageAlt, imageUrl, imageWidth, imageHeight, className } =
+  Astro.props as ImageProps;
+---
+
+<picture class={`${className}`}>
+  {
+    imageUrl.desktop && (
+      <source
+        media="(min-width: 1280px)"
+        srcset={imageUrl.desktop}
+        width={imageWidth.desktop}
+        height={imageHeight.desktop}
+        height={imageHeight.desktop ? imageHeight.desktop : '100%'}
+      />
+    )
+  }
+  <img
+    src={imageUrl.mobile}
+    alt={imageAlt}
+    width={imageWidth.mobile}
+    height={imageHeight.mobile ? imageHeight.mobile : '100%'}
+    loading="lazy"
+  />
+</picture>
